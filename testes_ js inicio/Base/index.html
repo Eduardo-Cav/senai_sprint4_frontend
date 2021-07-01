@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"> <!-- Seleciona a cadeia de caracteres para o padrão de acentução que usamos no português -->
+        <link rel="stylesheet" type="text/css" href="styles.css" /> <!-- Faz o link para o caminho do arquivo css-->
+        <title>Manipulando o Estilo do Site pela DOM</title> <!-- Nome da abinha do navegador  -->
+    </head>
+    <body>
+        <div id="manipula">
+            <p>Com base nos argumentos apresentados na aula, é possivel entender que
+            uma coisa é uma coisa e outra coisa é outra coisa, admito que não concordo nem discordo,
+            muito pelo contrario.</p> 
+            <p class="paragrafo">É factivel que a Terra é um dos planetas mais conhecidos
+            do mundo, mesmo sabendo que a vida é uma sucessão de sucessivos que sucedem sucessivamente sem cessar. 
+            Agora, mais do que nunca, é a hora, afinal, o importante é o que importa, pois onde quer que você esteja,
+            você sempre estará lá.</p>
+        </div>
+        <br>
+        <hr>
+
+        <h2 class="chamada">Altere o texto acima clicando nos botões</h2>
+
+    <div id="botoes">
+        <input type="button" value="Atualizar" onclick="window.location.reload()"/> 
+        <input type="button" value="Tamanho fonte" onclick="mudaTamanhoFonte()"/> 
+        <input type="button" value="Mudar cor fonte" onclick="mudaCorFonte()"/>
+        <input type="button" value="Mudar back" onclick="mudaBack()"/>
+        <input type="button" value="italico" onclick="italico()"/>
+        <input type="button" value="negrito" onclick="negrito()"/>
+        <input type="button" value="incluir borda " onclick="incluirb()"/>
+        <input type="button" value="excluir borda" onclick="excluirb()"/>
+        <input type="button" value="cade a div???" onclick="escondeDiv()"/>
+        <input type="button" value="achoo" onclick="aparecerDiv()"/>
+        <input type="button" value="não" onclick="no()"/>
+        <input type="button" value="background paragrafo" onclick="backgroundP()"/>
+        <input type="button" value="cor btn" onclick="mudaBtn()"/>
+        <input type="button" value="cor todos btn" onclick="mudaBtnTd()"/>
+        <input type="button" value="conta botão" onclick="contaBtn()"/>  
+        <input type="button" value="censurar" onclick="censura()"/>
+        <input type="button" value="troca cor do fundo" onclick="fundo()"/>
+        <input type="button" value="troca imagem" onclick="imagem()"/>
+    
+    </div>    
+
+    <img id="image" src="xuxa.jpg">
+
+        <script> //começa a brincadeira com JavaScript
+
+            //btn2
+            function mudaTamanhoFonte(){
+                        //pega elemento pelo id
+                document.getElementById("manipula").style.fontSize = "40px"
+            }
+
+             //btn3
+            function mudaCorFonte(){
+                document.getElementById("manipula").style.color = "white"
+            }
+
+              //btn4
+            function mudaBack(){
+                document.getElementById("manipula").style.backgroundColor = "black"
+            }
+
+             //btn5
+            function italico(){
+                document.getElementById("manipula").style.fontStyle = "italic"
+            }
+
+            //btn7
+            function negrito(){
+                document.getElementById("manipula").style.fontWeight = "bold"
+            }
+
+            //btn8
+            function incluirb(){
+                document.getElementById("manipula").style.border = "2px solid black"
+            }
+
+            //btn9
+            function excluirb(){
+                document.getElementById("manipula").style.border = "0"
+            }
+
+            //btn10
+            function escondeDiv(){
+                document.getElementById("manipula").style.display = "none"
+            }
+
+            //btn11
+            function aparecerDiv(){
+                document.getElementById("manipula").style.display = "inline"
+            }
+
+            //btn12
+            function no(){                                    //método de mudar o texto de um elemento html
+                document.getElementsByClassName("chamada")[0].innerHTML = "Nesse botão não"
+            }
+
+            //btn13
+
+            function backgroundP(){                 //pega o elemento pelo nome da classe
+                                                    // [0] - ordem que está sendo chamado
+                document.getElementById("manipula").getElementsByClassName("paragrafo")[0].style.backgroundColor = "blue"
+            }
+
+             //btn14
+
+            function mudaBtn(){
+                document.getElementsByTagName("input")[4].style.backgroundColor = "blue"
+            }
+
+            //btn15
+            function mudaBtnTd(){
+                var x = document.getElementById("botoes");
+                var y = x.getElementsByTagName("input")
+                var i;
+
+                for(i = 0; i < y.length; i++){
+                    y[i].style.backgroundColor = "lightblue"
+                }
+            }
+
+            //btn16
+            function contaBtn(){
+                //pega os inputs que estão em botes e armazena dentro de x
+                let x = document.getElementById("botoes").getElementsByTagName("input")
+
+                //sobreescreve mostrando a quantidade de botoes que tem
+                document.getElementById("manipula").innerHTML = x.length
+            }
+
+            //btn17
+            function censura(){
+                        //seleciona o caminho que vai usar <p> da classe paragrafo
+                        //sobreescreve com o innner
+                document.querySelector("p.paragrafo").innerHTML = "****"            
+            }
+
+            //btn18
+            function fundo(){
+                document.querySelector("body").style.backgroundColor = "cyan"
+            }
+
+            //btn19
+            function imagem(){
+                var img = document.querySelector("#image")
+                img.setAttribute("src", "alien.jpg")
+            }
+        </script> <!-- termina a brincadeira com JavaScript -->
+    </body>
+</html>
