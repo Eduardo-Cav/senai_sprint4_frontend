@@ -1,15 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './pages/home/App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
+import Consultas from './pages/consultasPaciente/consultasP';
+
+const routing = (
+  <Router>
+    <div>
+      <Switch>
+        <Route exact path = "/" component ={App}/>
+        <Route path = "/consultas" component = {Consultas}/>
+      </Switch>
+    </div>
+  </Router>
+
+)
+
+
+ReactDOM.render(routing, document.getElementById('root'));
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
