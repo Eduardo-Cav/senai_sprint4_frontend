@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './pages/home/App';
 import reportWebVitals from './reportWebVitals';
 
-import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
+import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+
 import Consultas from './pages/consultasPaciente/consultasP';
+import ConsultasM from './pages/consultasMedico/consultasM';
+import Login from './pages/login/login'
 
 const routing = (
   <Router>
     <div>
       <Switch>
-        <Route exact path = "/" component ={App}/>
-        <Route path = "/consultas" component = {Consultas}/>
+        <Route exact path = "/" component ={Login}/>
+        <Route path = "/consultasp" component = {Consultas}/>
+        <Route path = "/consultasm" component = {ConsultasM}/>
       </Switch>
     </div>
   </Router>

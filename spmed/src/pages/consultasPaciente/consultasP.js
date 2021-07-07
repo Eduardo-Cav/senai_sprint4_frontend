@@ -10,27 +10,36 @@ class Consultas extends Component{
         }
     }
 
-    buscarConsultasP = async () => {
+    buscarConsultasP = async (event) => {
 
-        const resposta = await api.get(`/consultas/minhas`)
-
-        .then(resposta => {
-            
-            if (resposta.status === 200) {
-                this.setState({
-                    consulta : resposta.data    
-                })
-
-                console.log(this.state.consulta)
+        await api.get(`/consultas/minhas`, {
+            headers : {
+                'Authorization' : 'Bearer ' + localStorage.getItem('token')
             }
         })
 
+
+        .then(resposta => 
+            this.setState({consulta : resposta.data})
+        )
+
         .catch(erro => console.log(erro))
+
+        
     }
 
     componentDidMount(){
         this.buscarConsultasP();
     }
+
+    atualizaUser = async (event) =>{
+        await this.setState({
+            idUsuario : event.target.value
+
+        })
+        console.log(this.state.idUsuario)
+    }
+    
 
     render(){
         return(
@@ -43,10 +52,8 @@ class Consultas extends Component{
                                 <tr>
                                     <th>#</th>
                                     <th>data</th>
-                                    <th>descrição</th>
-                                    <th>data</th>
+                                    <th>descricao</th>
                                     <th>medico</th>
-                                    <th>paciente</th>
                                 </tr>
                             </thead>
 
@@ -56,12 +63,12 @@ class Consultas extends Component{
                                 {
                                     this.state.consulta.map( consulta => {
                                         return(
-                                            <tr key={consulta.idEvento}>
+                                            <tr key={consulta.idConsulta}>
 
                                                 <td>{consulta.idConsulta}</td>
                                                 <td>{consulta.dataAgendamento}</td>
-                                                <td>{consulta.idMedicoNavigation}</td>
-                                                <td>{consulta.idPacienteNavigation}</td>
+                                                <td>{consulta.descricao}</td>
+                                                <td>{consulta.idMedicoNavigation.nomeMedico}</td>
                                             </tr>
                                         )
                                     })
@@ -74,7 +81,7 @@ class Consultas extends Component{
                         <div>
                             <input 
                                 type="text"
-                                value={this.state.nomeUsuario}
+                                value={this.state.idUsuario}
                                 //atualiza o que o usuário escreve para depois ser chamada a função 
                                 onChange={this.atualizaUser}
                                 placeholder="usuario que irá buscar"
