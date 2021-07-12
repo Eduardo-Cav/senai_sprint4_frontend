@@ -43,14 +43,14 @@ class ConsultasM extends Component{
             <div>
                 <main>
                     <section>
-                        <h2>Consultas Medico</h2>
-                        <table>
+                        <h2 style={{textAlign:'center'}}>Consultas Medico</h2>
+                        <table style={{ borderCollapse : 'separate', borderSpacing : 30, margin: 'auto'}}>
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>data</th>
-                                    <th>descricao</th>
-                                    <th>medico</th>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Paciente</th>
+                                    <th>Situação</th>
                                 </tr>
                             </thead>
 
@@ -61,11 +61,10 @@ class ConsultasM extends Component{
                                     this.state.consultas.map( consulta => {
                                         return(
                                             <tr key={consulta.idConsulta}>
-
-                                                <td>{consulta.idConsulta}</td>
                                                 <td>{consulta.dataAgendamento}</td>
                                                 <td>{consulta.descricao}</td>
-                                                <td>{consulta.idPacienteNavigation.nomeMedico}</td>
+                                                <td>{consulta.idPacienteNavigation.nomePaciente}</td>
+                                                <td>{consulta.idSituacaoNavigation.descricao}</td>
                                             </tr>
                                         )
                                     })
@@ -73,21 +72,6 @@ class ConsultasM extends Component{
                             </tbody>
                         </table>
                     </section>
-                    <section> 
-                    <form onSubmit={this.buscarConsultasM}>
-                        <div>
-                            <input 
-                                type="text"
-                                value={this.state.idUsuarioMedico}
-                                //atualiza o que o usuário escreve para depois ser chamada a função 
-                                onChange={this.atualizaUser}
-                                placeholder="usuario que irá buscar"
-                            />
-
-                            <button type="submit">Procurar</button>
-                        </div>
-                    </form>
-                </section> 
                 </main>
             </div>
         )
